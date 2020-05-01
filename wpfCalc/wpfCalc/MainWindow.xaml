@@ -15,9 +15,11 @@
                 <Button HorizontalAlignment="Left" Margin="10" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{StaticResource PrimaryHueMidForegroundBrush}">
                     <materialDesign:PackIcon Kind="Menu"/>
                 </Button>
+                <TextBlock FontSize="15" FontFamily="Oswald" Text="30 + 20 = 50" TextAlignment="Right"
+                           Foreground="{StaticResource PrimaryHueLightForegroundBrush}" Margin="20 0 20 10"/>
             </StackPanel>
             <StackPanel>
-
+                
             </StackPanel>
         </Grid>
     </Border>
