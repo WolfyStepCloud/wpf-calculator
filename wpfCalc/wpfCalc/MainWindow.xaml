@@ -8,10 +8,17 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         Height="550" Width="300" AllowsTransparency="True"
         WindowStyle="None" ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Background="{x:Null}">
     <Border Background="#E5000000" CornerRadius="10">
         <Grid>
-            
+            <StackPanel>
+                <Button HorizontalAlignment="Left" Margin="10" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{StaticResource PrimaryHueMidForegroundBrush}">
+                    <materialDesign:PackIcon Kind="Menu"/>
+                </Button>
+            </StackPanel>
+            <StackPanel>
+
+            </StackPanel>
         </Grid>
     </Border>
 </Window>
