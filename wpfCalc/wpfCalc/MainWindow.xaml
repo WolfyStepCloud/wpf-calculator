@@ -10,24 +10,29 @@
         WindowStyle="None" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen" Background="{x:Null}">
     <Border Background="#E5000000" CornerRadius="10">
-        <Grid Height="210" Margin="0,0,0,327">
+        <Grid>
             <StackPanel>
-                <Button HorizontalAlignment="Left" Margin="10" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{StaticResource PrimaryHueMidForegroundBrush}">
-                    <materialDesign:PackIcon Kind="Menu"/>
-                </Button>
-                <TextBlock FontSize="15" FontFamily="Oswald" Text="30 + 20 = 50" TextAlignment="Right"
+                <Grid Height="210">
+                    <StackPanel>
+                        <Button HorizontalAlignment="Left" Margin="10" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{StaticResource PrimaryHueMidForegroundBrush}">
+                            <materialDesign:PackIcon Kind="Menu"/>
+                        </Button>
+                        <TextBlock FontSize="15" FontFamily="Oswald" Text="30 + 20 = 50" TextAlignment="Right"
                            Foreground="{StaticResource PrimaryHueLightForegroundBrush}" Margin="20 0 20 10"/>
-            </StackPanel>
-            <StackPanel VerticalAlignment="Bottom">
-                <TextBlock FontSize="20" FontFamily="Oswald" Text="30 + 47 + 32 -" TextAlignment="Right"
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Bottom">
+                        <TextBlock FontSize="20" FontFamily="Oswald" Text="30 + 47 + 32 -" TextAlignment="Right"
                            Foreground="{StaticResource PrimaryHueLightForegroundBrush}" Margin="20 0"/>
-                <TextBlock FontSize="50" FontFamily="Oswald" Text="13" TextAlignment="Right"
+                        <TextBlock FontSize="50" FontFamily="Oswald" Text="13" TextAlignment="Right"
                            Foreground="#FF5885A4" Margin="20 0">
-                    <TextBlock.Effect>
-                        <DropShadowEffect BlurRadius="10" ShadowDepth="1" Color="#FF5885A4"/>
-                    </TextBlock.Effect>
-                </TextBlock>
+                            <TextBlock.Effect>
+                                <DropShadowEffect BlurRadius="10" ShadowDepth="1" Color="#FF5885A4"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
             </StackPanel>
         </Grid>
+        
     </Border>
 </Window>
