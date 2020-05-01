@@ -22,8 +22,11 @@
                 <TextBlock FontSize="20" FontFamily="Oswald" Text="30 + 47 + 32 -" TextAlignment="Right"
                            Foreground="{StaticResource PrimaryHueLightForegroundBrush}" Margin="20 0"/>
                 <TextBlock FontSize="50" FontFamily="Oswald" Text="13" TextAlignment="Right"
-                           Foreground="#FF5885A4" Margin="20 0"/>
-                
+                           Foreground="#FF5885A4" Margin="20 0">
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="1" Color="#FF5885A4"/>
+                    </TextBlock.Effect>
+                </TextBlock>
             </StackPanel>
         </Grid>
     </Border>
