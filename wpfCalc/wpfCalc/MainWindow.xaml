@@ -10,7 +10,7 @@
         WindowStyle="None" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen" Background="{x:Null}">
     <Border Background="#E5000000" CornerRadius="10">
-        <Grid>
+        <Grid Height="210" Margin="0,0,0,327">
             <StackPanel>
                 <Button HorizontalAlignment="Left" Margin="10" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{StaticResource PrimaryHueMidForegroundBrush}">
                     <materialDesign:PackIcon Kind="Menu"/>
@@ -18,7 +18,11 @@
                 <TextBlock FontSize="15" FontFamily="Oswald" Text="30 + 20 = 50" TextAlignment="Right"
                            Foreground="{StaticResource PrimaryHueLightForegroundBrush}" Margin="20 0 20 10"/>
             </StackPanel>
-            <StackPanel>
+            <StackPanel VerticalAlignment="Bottom">
+                <TextBlock FontSize="20" FontFamily="Oswald" Text="30 + 47 + 32 -" TextAlignment="Right"
+                           Foreground="{StaticResource PrimaryHueLightForegroundBrush}" Margin="20 0"/>
+                <TextBlock FontSize="50" FontFamily="Oswald" Text="13" TextAlignment="Right"
+                           Foreground="#FF5885A4" Margin="20 0"/>
                 
             </StackPanel>
         </Grid>
