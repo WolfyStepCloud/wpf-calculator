@@ -18,10 +18,11 @@ namespace wpfCalc {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
-
         double result = 0;
         string operation = "";
-        bool enteringValue = false;
+        bool enteringValue = false; //TODO: rename isAppending
+
+
 
         public MainWindow() {
             InitializeComponent();
