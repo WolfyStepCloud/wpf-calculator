@@ -75,7 +75,7 @@
                     <Button x:Name="btnPlusMinus"
                             Grid.Column="3" Grid.Row="0" Margin="5,5,5,5"
                             Style="{StaticResource MaterialDesignFloatingActionButton}"
-                            BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
+                            BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Click="btnPlusMinus_Click">
                         <materialDesign:PackIcon Kind="PlusMinus" Width="30" Height="30"/>
                     </Button>
                     <Button x:Name="btnSquareRoot"

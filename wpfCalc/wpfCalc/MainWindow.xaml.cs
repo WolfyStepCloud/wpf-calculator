@@ -26,103 +26,43 @@ namespace wpfCalc {
         }
 
         private void btnNumber0_Click(object sender, RoutedEventArgs e) {
-            if(operation == "") {
-                number1 = (number1 * 10);
-                txtDisplay.Text = number1.ToString();
-            } else {
-                number2 = (number1 * 10);
-                txtDisplay.Text = number2.ToString();
-            }
+            txtDisplay.Text = ReturnNumber(0).ToString();
         }
 
         private void btnNumber1_Click(object sender, RoutedEventArgs e) {
-            if (operation == "") {
-                number1 = (number1 * 10) + 1;
-                txtDisplay.Text = number1.ToString();
-            } else {
-                number2 = (number1 * 10) + 1;
-                txtDisplay.Text = number2.ToString();
-            }
+            txtDisplay.Text = ReturnNumber(1).ToString();
         }
 
         private void btnNumber2_Click(object sender, RoutedEventArgs e) {
-            if (operation == "") {
-                number1 = (number1 * 10) + 2;
-                txtDisplay.Text = number1.ToString();
-            } else {
-                number2 = (number1 * 10) + 2;
-                txtDisplay.Text = number2.ToString();
-            }
+            txtDisplay.Text = ReturnNumber(2).ToString();
         }
 
         private void btnNumber3_Click(object sender, RoutedEventArgs e) {
-            if (operation == "") {
-                number1 = (number1 * 10) + 3;
-                txtDisplay.Text = number1.ToString();
-            } else {
-                number2 = (number1 * 10) + 3;
-                txtDisplay.Text = number2.ToString();
-            }
+            txtDisplay.Text = ReturnNumber(3).ToString();
         }
 
         private void btnNumber4_Click(object sender, RoutedEventArgs e) {
-            if (operation == "") {
-                number1 = (number1 * 10) + 4;
-                txtDisplay.Text = number1.ToString();
-            } else {
-                number2 = (number1 * 10) + 4;
-                txtDisplay.Text = number2.ToString();
-            }
+            txtDisplay.Text = ReturnNumber(4).ToString();
         }
 
         private void btnNumber5_Click(object sender, RoutedEventArgs e) {
-            if (operation == "") {
-                number1 = (number1 * 10) + 5;
-                txtDisplay.Text = number1.ToString();
-            } else {
-                number2 = (number1 * 10) + 5;
-                txtDisplay.Text = number2.ToString();
-            }
+            txtDisplay.Text = ReturnNumber(5).ToString();
         }
 
         private void btnNumber6_Click(object sender, RoutedEventArgs e) {
-            if (operation == "") {
-                number1 = (number1 * 10) + 6;
-                txtDisplay.Text = number1.ToString();
-            } else {
-                number2 = (number1 * 10) + 6;
-                txtDisplay.Text = number2.ToString();
-            }
+            txtDisplay.Text = ReturnNumber(6).ToString();
         }
 
         private void btnNumber7_Click(object sender, RoutedEventArgs e) {
-            if (operation == "") {
-                number1 = (number1 * 10) + 7;
-                txtDisplay.Text = number1.ToString();
-            } else {
-                number2 = (number1 * 10) + 7;
-                txtDisplay.Text = number2.ToString();
-            }
+            txtDisplay.Text = ReturnNumber(7).ToString();
         }
 
         private void btnNumber8_Click(object sender, RoutedEventArgs e) {
-            if (operation == "") {
-                number1 = (number1 * 10) + 8;
-                txtDisplay.Text = number1.ToString();
-            } else {
-                number2 = (number1 * 10) + 8;
-                txtDisplay.Text = number2.ToString();
-            }
+            txtDisplay.Text = ReturnNumber(8).ToString();
         }
 
         private void btnNumber9_Click(object sender, RoutedEventArgs e) {
-            if (operation == "") {
-                number1 = (number1 * 10) + 9;
-                txtDisplay.Text = number1.ToString();
-            } else {
-                number2 = (number1 * 10) + 9;
-                txtDisplay.Text = number2.ToString();
-            }
+            txtDisplay.Text = ReturnNumber(9).ToString();
         }
 
         private void btnPlus_Click(object sender, RoutedEventArgs e) {
@@ -198,6 +138,16 @@ namespace wpfCalc {
                 number2 *= -1;
                 txtDisplay.Text = number2.ToString();
             }
+        }
+        double ReturnNumber(int btnNumber) {
+            if (btnNumber >= 0) {
+                if (operation == "") {
+                    return (number1 * 10) + btnNumber;
+                } else {
+                    return (number2 * 10) + btnNumber;
+                }
+            }
+            return 0;
         }
     }
 }
