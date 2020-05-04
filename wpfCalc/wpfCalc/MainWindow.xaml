@@ -18,11 +18,13 @@
                         <Button HorizontalAlignment="Left" Margin="10" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{StaticResource PrimaryHueMidForegroundBrush}">
                             <materialDesign:PackIcon Kind="Menu" Foreground="{StaticResource PrimaryHueLightForegroundBrush}"/>
                         </Button>
-                        <TextBlock FontSize="15" FontFamily="Oswald" Text="30 + 20 = 50" TextAlignment="Right"
+                        <TextBlock x:Name="txtHistory"
+                            FontSize="15" FontFamily="Oswald" Text="30 + 20 = 50" TextAlignment="Right"
                            Foreground="{StaticResource PrimaryHueLightForegroundBrush}" Margin="20 0 20 10"/>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Bottom">
-                        <TextBlock FontSize="20" FontFamily="Oswald" Text="30 + 47 + 32 -" TextAlignment="Right"
+                        <TextBlock x:Name="txtRegister" 
+                                   FontSize="20" FontFamily="Oswald" Text="30 + 47 + 32 -" TextAlignment="Right"
                            Foreground="{StaticResource PrimaryHueLightForegroundBrush}" Margin="20 0"/>
                         <TextBlock x:Name="txtDisplay"
                             FontSize="50" FontFamily="Oswald" Text="13" TextAlignment="Right" VerticalAlignment="Bottom"
