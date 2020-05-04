@@ -22,7 +22,7 @@ namespace wpfCalc {
         string operation = "";
         bool enteringValue = false; //TODO: rename isAppending
 
-
+        string leftPart, rightPart;
 
         public MainWindow() {
             InitializeComponent();
@@ -99,6 +99,8 @@ namespace wpfCalc {
         }
 
         private void btnEqual_Click(object sender, RoutedEventArgs e) {
+            leftPart = txtDisplay.Text;
+            txtRegister.Text = "";
             switch (operation){
                 case "+":
                     txtDisplay.Text = (result + getDisplayValue()).ToString();
@@ -120,9 +122,9 @@ namespace wpfCalc {
                     break;
             }
             result = getDisplayValue();
-            txtRegister.Text = "";
             operation = "";
             enteringValue = true;
+            txtHistory.Text = $"{leftPart} {rightPart} = {txtDisplay.Text}";
         }
         private void btnPlusMinus_Click(object sender, RoutedEventArgs e) {
             if (txtDisplay.Text == "0") return;
@@ -173,6 +175,8 @@ namespace wpfCalc {
             txtRegister.Text = $"{result} {operation}";
             txtDisplay.Text = result.ToString();
             enteringValue = true;
+            leftPart = txtDisplay.Text;
+
         }
         double getDisplayValue() {
             return double.Parse(txtDisplay.Text);
