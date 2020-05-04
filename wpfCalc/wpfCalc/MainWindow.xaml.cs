@@ -5,12 +5,39 @@ namespace wpfCalc {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
-        double result;
+        double register;
         string operation;
-        bool isAppending;
         bool valueChanged;
-
-        string leftPart, rightPart;
+        bool isError;
+        /*
+         * TODO:
+         * make register 
+         * 
+         * onOperationArif_Click:
+         *      store displayValue into register
+         *      show in txtReg register value and operation sign
+         *      show in txtDisplay register value
+         *      if last operation is / and the displayValue is zero, then isError = true
+         * if isError:
+         *      C clears
+         *      CE also clears
+         * sqrt and reciproc:
+         *      sqrt:
+         *          if(value < 0) isError = true;
+         *      reciproc:
+         *          if(value == 0) isError = true;
+         *      
+         *      store the value in register
+         *      show in txtRegister "operation(txtDisplayValue)"
+         *      show in txtDisplay register value
+         * percent:
+         *      percent of reg
+         * history:
+         *      if(isError) return;
+         *      
+         *      register = register (operation) txtDisplay;
+         *      txtReg (txtDisplay.Text) = register
+         */
 
         public MainWindow() {
             InitializeComponent();
@@ -19,9 +46,10 @@ namespace wpfCalc {
 
         #region numbers
         private void btnNumber0_Click(object sender, RoutedEventArgs e) {
-            if (isAppending)
+            if (valueChanged)
                 txtDisplay.Text += "0";
-
+            else if (!txtDisplay.Text.Equals("0"))
+                txtDisplay.Text = "0";
         }
 
         private void btnNumber1_Click(object sender, RoutedEventArgs e) {
@@ -62,7 +90,8 @@ namespace wpfCalc {
         private void btnDot_Click(object sender, RoutedEventArgs e) {
             if (!txtDisplay.Text.Contains(",")) {
                 txtDisplay.Text += ",";
-            }
+            } else if (!valueChanged)
+                txtDisplay.Text = "0,";
         }
 
         #endregion
@@ -70,74 +99,27 @@ namespace wpfCalc {
         #region math operations
 
         private void btnPlus_Click(object sender, RoutedEventArgs e) {
-            addOperation("+");
+            addArifOperation("+");
         }
 
         private void btnMinus_Click(object sender, RoutedEventArgs e) {
-            addOperation("-");
+            addArifOperation("-");
         }
 
         private void btnMultiply_Click(object sender, RoutedEventArgs e) {
-            addOperation("*");
+            addArifOperation("*");
         }
 
         private void btnDivide_Click(object sender, RoutedEventArgs e) {
-            addOperation("/");
+            addArifOperation("/");
         }
 
         private void btnReciprocal_Click(object sender, RoutedEventArgs e) {
-            addOperation("reciproc");
         }
         private void btnSquareRoot_Click(object sender, RoutedEventArgs e) {
-            addOperation("sqrt");
         }
         private void btnEqual_Click(object sender, RoutedEventArgs e) {
-            leftPart = txtRegister.Text;
-            txtRegister.Text = "";
-            switch (operation) {
-                case "+":
-                    txtDisplay.Text = (result + getDisplayValue()).ToString();
-                    rightPart = txtDisplay.Text;
-                    break;
-                case "-":
-                    txtDisplay.Text = (result - getDisplayValue()).ToString();
-                    rightPart = txtDisplay.Text;
-                    break;
-                case "*":
-                    txtDisplay.Text = (result * getDisplayValue()).ToString();
-                    rightPart = txtDisplay.Text;
-                    break;
-                case "/":
-                    if (txtDisplay.Text == "0") {
-                        txtDisplay.Text = "Error";
-                    } else {
-                        txtDisplay.Text = (result / getDisplayValue()).ToString();
-                        rightPart = txtDisplay.Text;
-                    }
-                    break;
-                case "reciproc":
-                    if (txtDisplay.Text == "0") {
-                        txtDisplay.Text = "Error";
-                    } else {
-                        txtDisplay.Text = (1 / getDisplayValue()).ToString();
-                        rightPart = txtDisplay.Text;
-                    }
-                    break;
-                case "sqrt":
-                    if (txtDisplay.Text == "0") {
-                        txtDisplay.Text = "Error";
-                    } else {
-                        txtDisplay.Text = (1 / getDisplayValue()).ToString();
-                        rightPart = txtDisplay.Text;
-                    }
-                    break;
-                default:
-                    break;
-            }
-            result = getDisplayValue();
-            operation = "";
-            isAppending = false;
-            txtHistory.Text = $"{leftPart} {rightPart} = {txtDisplay.Text}";
+            
         }
         private void btnPlusMinus_Click(object sender, RoutedEventArgs e) {
             if (txtDisplay.Text == "0") return;
@@ -177,40 +159,35 @@ namespace wpfCalc {
         void addNumberToDisplay(int number) {
             if (number < 1 || number > 9) return;
 
-            if (isAppending)
-                txtDisplay.Text += number.ToString();
-            else
+            if(!valueChanged || isError) {
                 txtDisplay.Text = number.ToString();
-
-            isAppending = true;
+                valueChanged = true;
+            }else
+                txtDisplay.Text += number.ToString();
         }
-        void addOperation(string op) {
+        void addArifOperation(string op) {
+            if (operation.Equals("/") && txtDisplay.Text.Equals(0)) {
+                txtDisplay.Text = "Error";
+                isError = true;
+            } else if (valueChanged) {
+                txtRegister.Text += $" {txtDisplay.Text} {op}";
+            } else {
+                txtRegister.Text = txtRegister.Text.Remove(txtRegister.Text.Length - 1, 1) + op;
+            }
             operation = op;
-            result = double.Parse(txtDisplay.Text);
-
-            if (operation.Equals("sqrt") || operation.Equals("reciproc")) {
-                txtRegister.Text = $"{operation}({result})";
-            } else
-                txtRegister.Text += $"{result} {operation} ";
-            txtDisplay.Text = result.ToString();
-            isAppending = false;
-            leftPart = txtDisplay.Text;
-
+            valueChanged = false;
         }
         double getDisplayValue() {
             return double.Parse(txtDisplay.Text);
         }
-
         void Reset() {
             operation = "";
-            isAppending = false;
             valueChanged = false;
-            result = 0;
+            isError = false;
+            register = 0;
             txtDisplay.Text = "0";
             txtRegister.Text = "";
             txtHistory.Text = "";
-            leftPart = "";
-            rightPart = "";
         }
 
         #endregion
