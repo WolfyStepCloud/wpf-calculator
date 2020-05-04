@@ -1,26 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace wpfCalc {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
-        double result = 0;
-        string operation = "";
-        bool enteringValue = false; //TODO: rename isAppending
+        double result;
+        string operation;
+        bool isAppending;
+        bool valueChanged;
 
         string leftPart, rightPart;
 
@@ -31,10 +19,9 @@ namespace wpfCalc {
 
         #region numbers
         private void btnNumber0_Click(object sender, RoutedEventArgs e) {
-            if (enteringValue) 
-                txtDisplay.Text = "0";
-            else if (txtDisplay.Text != "0") 
+            if (isAppending)
                 txtDisplay.Text += "0";
+
         }
 
         private void btnNumber1_Click(object sender, RoutedEventArgs e) {
@@ -73,8 +60,8 @@ namespace wpfCalc {
             addNumberToDisplay(9);
         }
         private void btnDot_Click(object sender, RoutedEventArgs e) {
-            if (!txtDisplay.Text.Contains(".")){
-                txtDisplay.Text += ".";
+            if (!txtDisplay.Text.Contains(",")) {
+                txtDisplay.Text += ",";
             }
         }
 
@@ -98,32 +85,58 @@ namespace wpfCalc {
             addOperation("/");
         }
 
+        private void btnReciprocal_Click(object sender, RoutedEventArgs e) {
+            addOperation("reciproc");
+        }
+        private void btnSquareRoot_Click(object sender, RoutedEventArgs e) {
+            addOperation("sqrt");
+        }
         private void btnEqual_Click(object sender, RoutedEventArgs e) {
-            leftPart = txtDisplay.Text;
+            leftPart = txtRegister.Text;
             txtRegister.Text = "";
-            switch (operation){
+            switch (operation) {
                 case "+":
                     txtDisplay.Text = (result + getDisplayValue()).ToString();
+                    rightPart = txtDisplay.Text;
                     break;
                 case "-":
                     txtDisplay.Text = (result - getDisplayValue()).ToString();
+                    rightPart = txtDisplay.Text;
                     break;
                 case "*":
                     txtDisplay.Text = (result * getDisplayValue()).ToString();
+                    rightPart = txtDisplay.Text;
                     break;
                 case "/":
                     if (txtDisplay.Text == "0") {
                         txtDisplay.Text = "Error";
-                    }
-                    else
+                    } else {
                         txtDisplay.Text = (result / getDisplayValue()).ToString();
+                        rightPart = txtDisplay.Text;
+                    }
+                    break;
+                case "reciproc":
+                    if (txtDisplay.Text == "0") {
+                        txtDisplay.Text = "Error";
+                    } else {
+                        txtDisplay.Text = (1 / getDisplayValue()).ToString();
+                        rightPart = txtDisplay.Text;
+                    }
+                    break;
+                case "sqrt":
+                    if (txtDisplay.Text == "0") {
+                        txtDisplay.Text = "Error";
+                    } else {
+                        txtDisplay.Text = (1 / getDisplayValue()).ToString();
+                        rightPart = txtDisplay.Text;
+                    }
                     break;
                 default:
                     break;
             }
             result = getDisplayValue();
             operation = "";
-            enteringValue = true;
+            isAppending = false;
             txtHistory.Text = $"{leftPart} {rightPart} = {txtDisplay.Text}";
         }
         private void btnPlusMinus_Click(object sender, RoutedEventArgs e) {
@@ -148,7 +161,7 @@ namespace wpfCalc {
         }
 
         private void btnBackSpace_Click(object sender, RoutedEventArgs e) {
-            if(txtDisplay.Text != "0") {
+            if (txtDisplay.Text != "0") {
                 if (txtDisplay.Text.Length == 1)
                     txtDisplay.Text = "0";
                 else
@@ -164,30 +177,40 @@ namespace wpfCalc {
         void addNumberToDisplay(int number) {
             if (number < 1 || number > 9) return;
 
-            if(enteringValue)
-                txtDisplay.Text = "";
-            txtDisplay.Text += number.ToString();
-            enteringValue = false;
+            if (isAppending)
+                txtDisplay.Text += number.ToString();
+            else
+                txtDisplay.Text = number.ToString();
+
+            isAppending = true;
         }
         void addOperation(string op) {
             operation = op;
             result = double.Parse(txtDisplay.Text);
-            txtRegister.Text = $"{result} {operation}";
+
+            if (operation.Equals("sqrt") || operation.Equals("reciproc")) {
+                txtRegister.Text = $"{operation}({result})";
+            } else
+                txtRegister.Text += $"{result} {operation} ";
             txtDisplay.Text = result.ToString();
-            enteringValue = true;
+            isAppending = false;
             leftPart = txtDisplay.Text;
 
         }
         double getDisplayValue() {
             return double.Parse(txtDisplay.Text);
         }
+
         void Reset() {
             operation = "";
-            enteringValue = true;
+            isAppending = false;
+            valueChanged = false;
             result = 0;
             txtDisplay.Text = "0";
             txtRegister.Text = "";
             txtHistory.Text = "";
+            leftPart = "";
+            rightPart = "";
         }
 
         #endregion

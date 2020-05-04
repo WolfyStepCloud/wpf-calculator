@@ -83,7 +83,7 @@
                     <Button x:Name="btnSquareRoot"
                             Grid.Column="4" Grid.Row="0" Margin="5,5,5,5"
                             Style="{StaticResource MaterialDesignFloatingActionButton}"
-                            BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Grid.ColumnSpan="2">
+                            BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Grid.ColumnSpan="2" Click="btnSquareRoot_Click">
                         <materialDesign:PackIcon Kind="SquareRoot" Width="30" Height="30"/>
                     </Button>
 
@@ -146,7 +146,7 @@
                             Grid.Column="4" Grid.Row="2" Margin="5,5,5,5"
                             Style="{StaticResource MaterialDesignFloatingActionButton}"
                             BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}"
-                            FontSize="20" FontFamily="Trebuchet MS" Grid.ColumnSpan="2">
+                            FontSize="20" FontFamily="Trebuchet MS" Grid.ColumnSpan="2" Click="btnReciprocal_Click">
                         <!--<materialDesign:PackIcon Kind="Money100" Width="30" Height="30"/>-->
                         1/x
                     </Button>
