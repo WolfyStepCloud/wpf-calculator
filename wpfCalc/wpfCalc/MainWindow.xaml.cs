@@ -165,5 +165,39 @@ namespace wpfCalc {
 
             }
         }
+
+        private void btnClearEntry_Click(object sender, RoutedEventArgs e) {
+            if (operation == "")
+                number1 = 0;
+            else
+                number2 = 0;
+            txtDisplay.Text = "0";
+        }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e) {
+            number1 = number2 = 0;
+            operation = "";
+            txtDisplay.Text = "0";
+        }
+
+        private void btnBackSpace_Click(object sender, RoutedEventArgs e) {
+            if (operation == "") {
+                number1 = (number1 / 10);
+                txtDisplay.Text = number1.ToString();
+            } else {
+                number2 = (number1 / 10);
+                txtDisplay.Text = number2.ToString();
+            }
+        }
+
+        private void btnPlusMinus_Click(object sender, RoutedEventArgs e) {
+            if (operation == "") {
+                number1 *= -1;
+                txtDisplay.Text = number1.ToString();
+            } else {
+                number2 *= -1;
+                txtDisplay.Text = number2.ToString();
+            }
+        }
     }
 }
