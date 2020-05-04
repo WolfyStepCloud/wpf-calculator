@@ -185,7 +185,7 @@
                     <Button x:Name="btnDot"
                             Grid.Column="2" Grid.Row="4" Margin="5,5,5,5" Content="."
                             Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
-                            BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
+                            BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Click="btnDot_Click">
                     </Button>
                     <Button x:Name="btnPlus"
                             Grid.Column="3" Grid.Row="4" Margin="5,5,5,5"
