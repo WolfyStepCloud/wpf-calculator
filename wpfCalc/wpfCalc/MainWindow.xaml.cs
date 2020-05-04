@@ -124,5 +124,46 @@ namespace wpfCalc {
                 txtDisplay.Text = number2.ToString();
             }
         }
+
+        private void btnPlus_Click(object sender, RoutedEventArgs e) {
+            operation = "+";
+            txtDisplay.Text = "0";
+        }
+
+        private void btnMinus_Click(object sender, RoutedEventArgs e) {
+            operation = "-";
+            txtDisplay.Text = "0";
+        }
+
+        private void btnMultiply_Click(object sender, RoutedEventArgs e) {
+            operation = "*";
+            txtDisplay.Text = "0";
+        }
+
+        private void btnDivide_Click(object sender, RoutedEventArgs e) {
+            operation = "/";
+            txtDisplay.Text = "0";
+        }
+
+        private void btnEqual_Click(object sender, RoutedEventArgs e) {
+            switch (operation) {
+                case "+":
+                    txtDisplay.Text = (number1 + number2).ToString();
+                    break;
+                case "-":
+                    txtDisplay.Text = (number1 - number2).ToString();
+                    break;
+                case "*":
+                    txtDisplay.Text = (number1 * number2).ToString();
+                    break;
+                case "/":
+                    if(number2 != 0)
+                        txtDisplay.Text = (number1 / number2).ToString();
+                    else
+                        txtDisplay.Text = "Error";
+                    break;
+
+            }
+        }
     }
 }
