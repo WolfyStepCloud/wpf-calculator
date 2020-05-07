@@ -114,7 +114,7 @@
                     <Button x:Name="btnPercent"
                             Grid.Column="4" Grid.Row="1" Margin="5,5,5,5"
                             Style="{StaticResource MaterialDesignFloatingActionButton}"
-                            BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Grid.ColumnSpan="2">
+                            BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Click="btnPercent_Click">
                         <materialDesign:PackIcon Kind="PercentOutline" Width="30" Height="30"/>
                     </Button>
 
