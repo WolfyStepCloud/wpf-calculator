@@ -12,36 +12,6 @@ namespace wpfCalc {
         bool isError;
         bool complexUsed;
 
-        /*
-         * TODO:
-         * make register 
-         * 
-         * onOperationArif_Click:
-         *      store displayValue into register
-         *      show in txtReg register value and operation sign
-         *      show in txtDisplay register value
-         *      if last operation is / and the displayValue is zero, then isError = true
-         * if isError:
-         *      C clears
-         *      CE also clears
-         * sqrt and reciproc:
-         *      sqrt:
-         *          if(value < 0) isError = true;
-         *      reciproc:
-         *          if(value == 0) isError = true;
-         *      
-         *      store the value in register
-         *      show in txtRegister "operation(txtDisplayValue)"
-         *      show in txtDisplay register value
-         * percent:
-         *      percent of reg
-         * history:
-         *      if(isError) return;
-         *      
-         *      register = register (operation) txtDisplay;
-         *      txtReg (txtDisplay.Text) = register
-         */
-
         public MainWindow() {
             InitializeComponent();
             Reset();
@@ -136,7 +106,12 @@ namespace wpfCalc {
             if (!isError) PercentOperation();
         }
         private void btnEqual_Click(object sender, RoutedEventArgs e) {
-            if (!isError) ;
+            if (!isError) {
+                txtHistory.Text = $"{txtRegister.Text} {txtDisplay.Text} = {register + double.Parse(txtDisplay.Text)}";
+                txtRegister.Text = "";
+                txtDisplay.Text = "0";
+                register = 0;
+            }
         }
         private void btnPlusMinus_Click(object sender, RoutedEventArgs e) {
             if (!isError && !complexUsed) {
