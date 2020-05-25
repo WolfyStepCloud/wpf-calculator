@@ -7,17 +7,22 @@
         mc:Ignorable="d"
         Title="Calculator"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-        Height="550" Width="330" AllowsTransparency="True"
+        Height="550" Width="330"
         WindowStyle="None" ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen" Background="{x:Null}">
+        WindowStartupLocation="CenterScreen" Background="{x:Null}" FontFamily="Tahoma">
     <Border Background="#E5000000" CornerRadius="10">
         <Grid>
             <StackPanel>
                 <Grid Height="210">
                     <StackPanel>
-                        <Button HorizontalAlignment="Left" Margin="10" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{StaticResource PrimaryHueMidForegroundBrush}">
-                            <materialDesign:PackIcon Kind="Menu" Foreground="{StaticResource PrimaryHueLightForegroundBrush}"/>
-                        </Button>
+                        <DockPanel>
+                            <Button HorizontalAlignment="Left" Margin="10" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{StaticResource PrimaryHueMidForegroundBrush}">
+                                <materialDesign:PackIcon Kind="Menu" Foreground="{StaticResource PrimaryHueLightForegroundBrush}"/>
+                            </Button>
+                            <Button HorizontalAlignment="Right" Click="btnClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="{StaticResource MaterialDesignBodyLight}">
+                                <materialDesign:PackIcon Kind="Close" Foreground="{StaticResource MaterialDesignBodyLight}"/>
+                            </Button>
+                        </DockPanel>
                         <TextBlock x:Name="txtHistory"
                             FontSize="15" FontFamily="Oswald" Text="30 + 20 = 50" TextAlignment="Right"
                            Foreground="{StaticResource PrimaryHueLightForegroundBrush}" Margin="20 0 20 10"/>
@@ -63,7 +68,6 @@
                             Style="{StaticResource MaterialDesignFloatingActionButton}"
                             BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}"
                             FontSize="20" FontFamily="Trebuchet MS" Click="btnClearEntry_Click">
-                        <!--<materialDesign:PackIcon Kind="PacMan" Width="30" Height="30"/>-->
                         CE
                     </Button>
                     <Button x:Name="btnClear"
@@ -71,7 +75,6 @@
                             Style="{StaticResource MaterialDesignFloatingActionButton}"
                             BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}"
                             FontSize="20" FontFamily="Trebuchet MS" Click="btnClear_Click">
-                        <!--<materialDesign:PackIcon Kind="LetterC" Width="30" Height="30"/>-->
                         C
                     </Button>
                     <Button x:Name="btnPlusMinus"
@@ -147,7 +150,6 @@
                             Style="{StaticResource MaterialDesignFloatingActionButton}"
                             BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}"
                             FontSize="20" FontFamily="Trebuchet MS" Grid.ColumnSpan="2" Click="btnReciprocal_Click">
-                        <!--<materialDesign:PackIcon Kind="Money100" Width="30" Height="30"/>-->
                         1/x
                     </Button>
 

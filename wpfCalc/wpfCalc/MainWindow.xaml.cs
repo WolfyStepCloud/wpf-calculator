@@ -295,5 +295,8 @@ namespace wpfCalc {
 
         #endregion
 
+        private void btnClose(object sender, RoutedEventArgs e) {
+            this.Close();
+        }
     }
 }
